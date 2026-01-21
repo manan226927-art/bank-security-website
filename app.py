@@ -55,7 +55,8 @@ def bank():
     return render_template("bank_form.html")
 
 # ▶️ Run app
-if __name__ == "__main__":
-    app.run()
+
+    
+
 
 
