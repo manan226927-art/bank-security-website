@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect
 from pymongo import MongoClient
 
@@ -55,5 +56,6 @@ def bank():
 
 # ▶️ Run app
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
+
 
