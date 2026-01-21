@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Secure Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="matrix"></div>
+
+<div class="login-box">
+    <h1>🔑 BANK SECURE LOGIN</h1>
+
+    <input type="text" placeholder="👤 Username" id="username">
+    <input type="password" placeholder="🔒 Password" id="password">
+
+    <button onclick="login()">ACCESS SYSTEM</button>
+
+    <p id="status"></p>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>s
