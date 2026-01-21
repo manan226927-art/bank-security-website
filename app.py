@@ -1,37 +1,49 @@
-from flask import Flask, render_template,request,redirect
+from flask import Flask, render_template, request, redirect
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
+# 🔗 MongoDB connection (REPLACE with YOUR connection string)
+client = MongoClient(
+    "mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority"
+)
+
+# 📦 Database & Collection
+db = client["bank_security_db"]
+collection = db["bank_details"]
+
+# 🏠 Home / Login page
 @app.route("/")
-def login():
+def index():
     return render_template("index.html")
 
-@app.route("/bank-form")
-def bank_form():
-    return render_template("bank_form.html")
-
+# 📊 Dashboard page
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
 
+# 🤖 AI page (optional)
 @app.route("/ai")
 def ai():
     return render_template("ai.html")
-    @app.route("/bank", methods=["GET", "POST"])
+
+# 🏦 Bank Form (GET + POST)
+@app.route("/bank", methods=["GET", "POST"])
 def bank():
     if request.method == "POST":
-        name = request.form["name"]
-        account = request.form["account"]
-        ifsc = request.form["ifsc"]
+        data = {
+            "name": request.form["name"],
+            "account": request.form["account"],
+            "ifsc": request.form["ifsc"]
+        }
 
-        print(name, account, ifsc)  # later we store in MongoDB
+        # 💾 Save to MongoDB
+        collection.insert_one(data)
 
         return redirect("/dashboard")
 
     return render_template("bank_form.html")
 
-
+# ▶️ Run app
 if __name__ == "__main__":
-
     app.run(debug=True)
-
