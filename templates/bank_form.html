@@ -1,32 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Bank Details Verification</title>
+    <meta charset="UTF-8">
+    <title>Bank Details Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="hacker">
 
-<div class="login-box">
-    <h1>🏦 BANK DETAILS FORM</h1>
+    <h1>🏦 Secure Bank Details</h1>
 
-    <form onsubmit="goDashboard(); return false;">
-        <input type="text" placeholder="👤 Account Holder Name" required>
-        <input type="text" placeholder="🏦 Bank Name" required>
-        <input type="number" placeholder="💳 Account Number" required>
-        <input type="number" placeholder="📱 Mobile Number" required>
-        <input type="number" placeholder="💰 Account Balance" required>
+    <form method="POST" action="/bank" class="bank-form">
+        <input type="text" name="name" placeholder="👤 Full Name" required><br><br>
 
-        <button type="submit">🔐 VERIFY & CONTINUE</button>
+        <input type="text" name="account" placeholder="💳 Account Number" required><br><br>
+
+        <input type="text" name="ifsc" placeholder="🏦 IFSC Code" required><br><br>
+
+        <button type="submit">🔐 Submit Securely</button>
     </form>
 
-    <p>🛡️ All data is encrypted & secure</p>
-</div>
-
-<script>
-function goDashboard() {
-    window.location.href = "/dashboard";
-}
-</script>
+    <br>
+    <a href="/">⬅ Back to Home</a>
 
 </body>
 </html>
