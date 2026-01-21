@@ -4,9 +4,18 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 # 🔗 MongoDB connection (REPLACE with YOUR connection string)
-client = MongoClient(
-    "mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority"
-)
+import os
+from flask import Flask, render_template, request, redirect
+from pymongo import MongoClient
+
+app = Flask(__name__)
+
+# MongoDB connection using environment variable
+MONGO_URI = os.environ.get("MONGO_URI")
+client = MongoClient(MONGO_URI)
+
+db = client["bank_security_db"]
+collection = db["bank_details"]
 
 # 📦 Database & Collection
 db = client["bank_security_db"]
@@ -47,3 +56,4 @@ def bank():
 # ▶️ Run app
 if __name__ == "__main__":
     app.run(debug=True)
+
